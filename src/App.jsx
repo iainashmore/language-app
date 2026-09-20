@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Alphabet from './components/Alphabet.jsx'
 import Flashcards from './components/Flashcards.jsx'
+import Match from './components/Match.jsx'
 import Quiz from './components/Quiz.jsx'
-import { canSpeak } from './speech.js'
+import { recordingCount } from './audio.js'
+import { canSpeak, onVoicesReady } from './speech.js'
 
 const TABS = [
   { id: 'learn', label: 'Words', emoji: '🗂️', view: Flashcards },
-  { id: 'play', label: 'Play', emoji: '🎯', view: Quiz },
+  { id: 'match', label: 'Match', emoji: '🖼️', view: Match },
+  { id: 'quiz', label: 'Quiz', emoji: '🎯', view: Quiz },
   { id: 'letters', label: 'Letters', emoji: '🔤', view: Alphabet },
 ]
 
 export default function App() {
   const [tab, setTab] = useState('learn')
+  const [silent, setSilent] = useState(() => recordingCount === 0 && !canSpeak())
+
+  // Voice lists arrive after the page loads in most browsers.
+  useEffect(() => onVoicesReady(() => setSilent(recordingCount === 0 && !canSpeak())), [])
+
   const Current = TABS.find((t) => t.id === tab).view
 
   return (
@@ -37,10 +45,12 @@ export default function App() {
         <Current />
       </main>
 
-      {!canSpeak() && (
+      {silent && (
         <p className="audio-note">
-          This browser has no Mongolian voice installed, so the words are silent for now.
-          Recordings by a Mongolian speaker are the next thing to add.
+          The words are silent on this device: there are no recordings in the app yet, and
+          this browser has no Mongolian voice to fall back on. Dropping MP3s into
+          <code> src/recordings</code> is all it takes to give them a voice — see the
+          README in that folder.
         </p>
       )}
     </div>

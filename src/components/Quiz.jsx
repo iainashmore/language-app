@@ -90,7 +90,7 @@ export default function Quiz() {
           <>
             <div className="prompt-word">
               {answer.mn}
-              <SpeakButton text={answer.mn} />
+              <SpeakButton word={answer} />
             </div>
             <p className="prompt-ask">What does this mean?</p>
           </>

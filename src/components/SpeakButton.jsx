@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react'
-import { canSpeak, onVoicesReady, speak } from '../speech.js'
+import { useEffect, useMemo, useState } from 'react'
+import { canHear, playWord } from '../audio.js'
+import { onVoicesReady } from '../speech.js'
 
-// Shows a speaker button only when the browser actually has a Mongolian voice.
-// When it does not, we say so plainly rather than offering a button that either
-// does nothing or says the word in an English accent.
-export default function SpeakButton({ text }) {
-  const [available, setAvailable] = useState(canSpeak())
+// Shows a speaker button only when this word can actually be said: a recording
+// for it, or a genuinely Mongolian voice on the device. When neither exists we
+// say nothing rather than offering a button that does nothing, or one that says
+// the word in an English accent.
+export default function SpeakButton({ word, className = 'speak' }) {
+  const [voicesChanged, setVoicesChanged] = useState(0)
 
-  useEffect(() => onVoicesReady(() => setAvailable(canSpeak())), [])
+  useEffect(() => onVoicesReady(() => setVoicesChanged((n) => n + 1)), [])
 
+  const available = useMemo(() => canHear(word), [word, voicesChanged])
   if (!available) return null
 
   return (
     <button
-      className="speak"
+      className={className}
       onClick={(event) => {
         event.stopPropagation()
-        speak(text)
+        playWord(word)
       }}
-      aria-label={`Say ${text} out loud`}
+      aria-label={`Say ${word.mn} out loud`}
       title="Say it out loud"
     >
       🔊
