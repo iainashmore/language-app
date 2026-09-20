@@ -1,0 +1,293 @@
+:root {
+  --ink: #1d2433;
+  --muted: #5d6877;
+  --sky: #2f6fed;
+  --sky-soft: #e8f0ff;
+  --grass: #17996b;
+  --grass-soft: #e3f7ee;
+  --flame: #d8443c;
+  --flame-soft: #fdeceb;
+  --gold: #f0a202;
+  --paper: #ffffff;
+  --shell: #f4f6fb;
+  --line: #dfe4ef;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--shell);
+  color: var(--ink);
+  font-family: "Segoe UI", Roboto, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+header { text-align: center; margin-bottom: 20px; }
+
+h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Tabs ------------------------------------------------------------------ */
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab-on {
+  background: var(--sky);
+  border-color: var(--sky);
+  color: #fff;
+}
+
+/* Flashcards ------------------------------------------------------------ */
+
+.topic-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chip-on {
+  background: var(--sky-soft);
+  border-color: var(--sky);
+  color: var(--sky);
+  font-weight: 700;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(29, 36, 51, 0.06);
+}
+
+.card-flipped { background: var(--sky-soft); border-color: var(--sky); }
+
+.card-emoji { font-size: 4rem; line-height: 1; }
+
+.card-mn {
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-en { font-size: 1.9rem; font-weight: 700; }
+
+.card-roman { color: var(--muted); font-size: 1rem; }
+
+.card-hint { color: var(--muted); font-size: 0.9rem; }
+
+.card-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.nav {
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.counter { color: var(--muted); font-size: 0.9rem; }
+
+/* Quiz ------------------------------------------------------------------ */
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.scoreboard strong { color: var(--ink); font-size: 1.05rem; }
+
+.streak-hot strong { color: var(--gold); }
+
+.prompt {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.prompt-emoji { font-size: 3.4rem; line-height: 1; }
+
+.prompt-word {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.prompt-ask { color: var(--muted); margin: 8px 0 0; font-size: 0.95rem; }
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.choice {
+  padding: 18px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 62px;
+}
+
+.choice:disabled { cursor: default; }
+
+.choice-right { background: var(--grass-soft); border-color: var(--grass); color: var(--grass); }
+.choice-wrong { background: var(--flame-soft); border-color: var(--flame); color: var(--flame); }
+.choice-dim { opacity: 0.45; }
+
+.feedback {
+  min-height: 48px;
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.98rem;
+}
+
+.good { color: var(--grass); font-weight: 700; }
+.bad { color: var(--flame); }
+
+/* Alphabet -------------------------------------------------------------- */
+
+.lede { color: var(--muted); line-height: 1.5; margin-top: 0; }
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 8px;
+}
+
+.letter {
+  padding: 12px 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.letter-glyph { font-size: 1.3rem; font-weight: 600; }
+
+.letter-extra { background: #fff6e0; border-color: var(--gold); }
+
+.letter-open { background: var(--sky); border-color: var(--sky); color: #fff; }
+
+.letter-detail {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  padding: 18px 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.letter-detail-glyph { font-size: 2.4rem; font-weight: 700; }
+
+.letter-sound { margin: 0; font-size: 1.05rem; font-weight: 600; }
+
+.letter-note { margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+
+/* Shared ---------------------------------------------------------------- */
+
+.speak {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.audio-note {
+  margin-top: 28px;
+  padding: 14px 16px;
+  background: #fff9e8;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  color: #7a5600;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 420px) {
+  .tab { font-size: 0.82rem; padding: 10px 4px; }
+  .card-mn, .prompt-word { font-size: 1.7rem; }
+}
