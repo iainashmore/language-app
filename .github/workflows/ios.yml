@@ -21,3 +21,13 @@ jobs:
           -scheme MongolianWords
           -destination 'generic/platform=iOS Simulator'
           CODE_SIGNING_ALLOWED=NO
+          -derivedDataPath build
+      # The app cannot start without the shared word list, so make sure Xcode
+      # copied it in from content/.
+      - name: Check the word list made it into the app
+        run: |
+          app=build/Build/Products/Debug-iphonesimulator/MongolianWords.app
+          ls "$app"
+          test -f "$app/words.json"
+          test -f "$app/alphabet.json"
+          test ! -f "$app/README.md"
