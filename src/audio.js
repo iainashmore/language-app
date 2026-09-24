@@ -1,6 +1,6 @@
 // Saying a word out loud, best source first.
 //
-//   1. a recording in src/recordings, named after the word's id — a real
+//   1. a recording in content/recordings, named after the word's id — a real
 //      Mongolian speaker beats anything a browser can synthesise
 //   2. a Mongolian text-to-speech voice, on the rare device that has one
 //   3. silence, which is better than a wrong accent (see speech.js)
@@ -9,7 +9,7 @@
 // filenames, so the app always knows exactly which words it can say.
 import { canSpeak, speak, stopSpeaking } from './speech.js'
 
-const urls = import.meta.glob('./recordings/*.mp3', {
+const urls = import.meta.glob('../content/recordings/*.mp3', {
   eager: true,
   query: '?url',
   import: 'default',

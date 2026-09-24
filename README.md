@@ -1,6 +1,6 @@
 # Монгол хэл — learning Mongolian
 
-A small web app for learning everyday Mongolian, written in **Cyrillic**, the script
+A small app for learning everyday Mongolian, for the web and for iPhone and iPad, written in **Cyrillic**, the script
 used in Mongolia today. Built for a 10-year-old, so it assumes confident reading in
 English and no prior contact with Cyrillic at all.
 
@@ -41,9 +41,30 @@ React and Vite, no backend, no accounts, no data collected. It is a static site,
 `dist/` can be hosted anywhere. `GITHUB_PAGES=1 npm run build` sets the base path for a
 GitHub Pages project site.
 
+## The iPhone and iPad app
+
+`ios/` holds a native SwiftUI version with the same four screens. It reads the same
+word list, letters and recordings as the web app, straight from `content/`, so a word
+added once shows up in both.
+
+1. Open `ios/MongolianWords.xcodeproj` in Xcode 16 or later.
+2. To try it on the simulator, pick an iPhone from the device menu at the top of the
+   window and press Run (⌘R).
+3. To put it on a real iPhone or iPad, plug it in and pick it from the same menu. The
+   first time, open the **MongolianWords** target's **Signing & Capabilities** tab and
+   choose your Apple ID under **Team** (Xcode ▸ Settings ▸ Accounts adds one; a free
+   Apple ID is enough). If Xcode says the bundle identifier is taken, change it to
+   anything unique. On the device, the first launch needs the developer trusted in
+   Settings ▸ General ▸ VPN & Device Management, and Developer Mode switched on in
+   Settings ▸ Privacy & Security.
+
+Apps signed with a free Apple ID stop opening after seven days; running from Xcode
+again renews them. A paid developer account lasts a year and allows TestFlight.
+
 ## Adding words
 
-All vocabulary lives in `src/data/words.js` and all letters in `src/data/alphabet.js`.
+All vocabulary lives in `content/words.json` and all letters in `content/alphabet.json`,
+shared by the web and iOS apps.
 Adding a word is one line in the list; no screen needs changing. A word needs an id, its
 Mongolian spelling, a romanisation, the English meaning, a picture cue and a topic. The
 id is the word's short latin name, and is also the filename of its recording.
@@ -60,9 +81,9 @@ Mongolian voice is installed and stays silent otherwise: reading Mongolian in an
 accent would teach the wrong pronunciation, which is worse than silence.
 
 Recordings by a Mongolian speaker are what fixes that, and the app is ready for them.
-Drop an MP3 into `src/recordings` named after the word's id — `нохой` has the id
+Drop an MP3 into `content/recordings` named after the word's id — `нохой` has the id
 `nokhoi`, so its recording is `nokhoi.mp3` — and that word is spoken from the recording
-everywhere in the app: the flashcards, the quiz and the matching game. Nothing else
+everywhere in both apps: the flashcards, the quiz and the matching game. Nothing else
 changes. Words without a recording carry on as they are, and a speaker button is only
 ever shown for a word the device can actually say.
 

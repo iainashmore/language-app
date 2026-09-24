@@ -1,85 +1,16 @@
 // The vocabulary the app teaches.
 //
-// Everything the learner sees comes from this list, so new words can be added
-// here without touching any of the screens. Each entry needs:
+// The list itself lives in content/words.json, which the iOS app reads too, so
+// the two apps always teach the same words. Adding a word is one line there;
+// no screen needs changing. Each entry needs:
+//   id      the word's short latin name, also the filename of its recording
 //   mn      the word in Mongolian Cyrillic
 //   roman   a rough romanisation, to read aloud from
 //   en      the English meaning
 //   emoji   a picture cue, so a word can be recognised before it can be read
-//   topic   which set it belongs to (see `topics` below)
-export const words = [
-  // Greetings and polite words
-  { id: 'sain-bain-uu', mn: 'Сайн байна уу', roman: 'sain bain uu', en: 'Hello', emoji: '👋', topic: 'greetings' },
-  { id: 'bayartai', mn: 'Баяртай', roman: 'bayartai', en: 'Goodbye', emoji: '🤚', topic: 'greetings' },
-  { id: 'bayarlalaa', mn: 'Баярлалаа', roman: 'bayarlalaa', en: 'Thank you', emoji: '🙏', topic: 'greetings' },
-  { id: 'tiim', mn: 'Тийм', roman: 'tiim', en: 'Yes', emoji: '✅', topic: 'greetings' },
-  { id: 'ugui', mn: 'Үгүй', roman: 'ügüi', en: 'No', emoji: '❌', topic: 'greetings' },
-  { id: 'uuchlaarai', mn: 'Уучлаарай', roman: 'uuchlaarai', en: 'Sorry', emoji: '😔', topic: 'greetings' },
+//   topic   which set it belongs to (see `topics` in the same file)
+import content from '../../content/words.json'
 
-  // Family
-  { id: 'eej', mn: 'Ээж', roman: 'eej', en: 'Mum', emoji: '👩', topic: 'family' },
-  { id: 'aav', mn: 'Аав', roman: 'aav', en: 'Dad', emoji: '👨', topic: 'family' },
-  { id: 'egch', mn: 'Эгч', roman: 'egch', en: 'Older sister', emoji: '👧', topic: 'family' },
-  { id: 'akh', mn: 'Ах', roman: 'akh', en: 'Older brother', emoji: '👦', topic: 'family' },
-  { id: 'duu', mn: 'Дүү', roman: 'düü', en: 'Younger brother or sister', emoji: '🧒', topic: 'family' },
-  { id: 'ger-bul', mn: 'Гэр бүл', roman: 'ger bül', en: 'Family', emoji: '👨‍👩‍👧', topic: 'family' },
-  { id: 'naiz', mn: 'Найз', roman: 'naiz', en: 'Friend', emoji: '🧑‍🤝‍🧑', topic: 'family' },
-
-  // Animals
-  { id: 'mor', mn: 'Морь', roman: "mor'", en: 'Horse', emoji: '🐴', topic: 'animals' },
-  { id: 'nokhoi', mn: 'Нохой', roman: 'nokhoi', en: 'Dog', emoji: '🐕', topic: 'animals' },
-  { id: 'muur', mn: 'Муур', roman: 'muur', en: 'Cat', emoji: '🐈', topic: 'animals' },
-  { id: 'khon', mn: 'Хонь', roman: "khon'", en: 'Sheep', emoji: '🐑', topic: 'animals' },
-  { id: 'temee', mn: 'Тэмээ', roman: 'temee', en: 'Camel', emoji: '🐫', topic: 'animals' },
-  { id: 'ukher', mn: 'Үхэр', roman: 'ükher', en: 'Cow', emoji: '🐄', topic: 'animals' },
-  { id: 'yamaa', mn: 'Ямаа', roman: 'yamaa', en: 'Goat', emoji: '🐐', topic: 'animals' },
-  { id: 'shuvuu', mn: 'Шувуу', roman: 'shuvuu', en: 'Bird', emoji: '🐦', topic: 'animals' },
-
-  // Numbers one to ten
-  { id: 'neg', mn: 'Нэг', roman: 'neg', en: 'One', emoji: '1️⃣', topic: 'numbers' },
-  { id: 'khoyor', mn: 'Хоёр', roman: 'khoyor', en: 'Two', emoji: '2️⃣', topic: 'numbers' },
-  { id: 'gurav', mn: 'Гурав', roman: 'gurav', en: 'Three', emoji: '3️⃣', topic: 'numbers' },
-  { id: 'dorov', mn: 'Дөрөв', roman: 'döröv', en: 'Four', emoji: '4️⃣', topic: 'numbers' },
-  { id: 'tav', mn: 'Тав', roman: 'tav', en: 'Five', emoji: '5️⃣', topic: 'numbers' },
-  { id: 'zurgaa', mn: 'Зургаа', roman: 'zurgaa', en: 'Six', emoji: '6️⃣', topic: 'numbers' },
-  { id: 'doloo', mn: 'Долоо', roman: 'doloo', en: 'Seven', emoji: '7️⃣', topic: 'numbers' },
-  { id: 'naim', mn: 'Найм', roman: 'naim', en: 'Eight', emoji: '8️⃣', topic: 'numbers' },
-  { id: 'yes', mn: 'Ес', roman: 'yes', en: 'Nine', emoji: '9️⃣', topic: 'numbers' },
-  { id: 'arav', mn: 'Арав', roman: 'arav', en: 'Ten', emoji: '🔟', topic: 'numbers' },
-
-  // Colours
-  { id: 'ulaan', mn: 'Улаан', roman: 'ulaan', en: 'Red', emoji: '🔴', topic: 'colours' },
-  { id: 'tsenkher', mn: 'Цэнхэр', roman: 'tsenkher', en: 'Blue', emoji: '🔵', topic: 'colours' },
-  { id: 'shar', mn: 'Шар', roman: 'shar', en: 'Yellow', emoji: '🟡', topic: 'colours' },
-  { id: 'nogoon', mn: 'Ногоон', roman: 'nogoon', en: 'Green', emoji: '🟢', topic: 'colours' },
-  { id: 'khar', mn: 'Хар', roman: 'khar', en: 'Black', emoji: '⚫', topic: 'colours' },
-  { id: 'tsagaan', mn: 'Цагаан', roman: 'tsagaan', en: 'White', emoji: '⚪', topic: 'colours' },
-
-  // Food and drink
-  { id: 'us', mn: 'Ус', roman: 'us', en: 'Water', emoji: '💧', topic: 'food' },
-  { id: 'suu', mn: 'Сүү', roman: 'süü', en: 'Milk', emoji: '🥛', topic: 'food' },
-  { id: 'tsai', mn: 'Цай', roman: 'tsai', en: 'Tea', emoji: '🍵', topic: 'food' },
-  { id: 'talkh', mn: 'Талх', roman: 'talkh', en: 'Bread', emoji: '🍞', topic: 'food' },
-  { id: 'makh', mn: 'Мах', roman: 'makh', en: 'Meat', emoji: '🍖', topic: 'food' },
-  { id: 'alim', mn: 'Алим', roman: 'alim', en: 'Apple', emoji: '🍎', topic: 'food' },
-
-  // Everyday things
-  { id: 'ger', mn: 'Гэр', roman: 'ger', en: 'Home (also: a ger, the round felt tent)', emoji: '🏠', topic: 'everyday' },
-  { id: 'nom', mn: 'Ном', roman: 'nom', en: 'Book', emoji: '📖', topic: 'everyday' },
-  { id: 'surguul', mn: 'Сургууль', roman: "surguul'", en: 'School', emoji: '🏫', topic: 'everyday' },
-  { id: 'nar', mn: 'Нар', roman: 'nar', en: 'Sun', emoji: '☀️', topic: 'everyday' },
-  { id: 'sar', mn: 'Сар', roman: 'sar', en: 'Moon (also: month)', emoji: '🌙', topic: 'everyday' },
-  { id: 'mod', mn: 'Мод', roman: 'mod', en: 'Tree', emoji: '🌳', topic: 'everyday' },
-]
-
-export const topics = [
-  { id: 'greetings', label: 'Hellos', emoji: '👋' },
-  { id: 'family', label: 'Family', emoji: '👨‍👩‍👧' },
-  { id: 'animals', label: 'Animals', emoji: '🐴' },
-  { id: 'numbers', label: 'Numbers', emoji: '🔢' },
-  { id: 'colours', label: 'Colours', emoji: '🎨' },
-  { id: 'food', label: 'Food', emoji: '🍎' },
-  { id: 'everyday', label: 'Everyday', emoji: '🏠' },
-]
+export const { words, topics } = content
 
 export const wordsInTopic = (topicId) => words.filter((w) => w.topic === topicId)

@@ -49,7 +49,7 @@ export default function App() {
         <p className="audio-note">
           The words are silent on this device: there are no recordings in the app yet, and
           this browser has no Mongolian voice to fall back on. Dropping MP3s into
-          <code> src/recordings</code> is all it takes to give them a voice — see the
+          <code> content/recordings</code> is all it takes to give them a voice — see the
           README in that folder.
         </p>
       )}
