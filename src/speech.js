@@ -18,6 +18,8 @@ export const mongolianVoice = () => voices().find((v) => MONGOLIAN.test(v.lang))
 
 export const canSpeak = () => mongolianVoice() !== null
 
+export const stopSpeaking = () => window.speechSynthesis?.cancel()
+
 export function speak(text) {
   const voice = mongolianVoice()
   if (!voice) return false

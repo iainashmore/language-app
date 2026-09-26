@@ -57,7 +57,7 @@ export default function Flashcards() {
           <>
             <div className="card-mn">
               {card.mn}
-              <SpeakButton text={card.mn} />
+              <SpeakButton word={card} />
             </div>
             <div className="card-hint">Tap the card to see what it means</div>
           </>
