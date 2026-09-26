@@ -47,7 +47,7 @@ struct FlashcardsView: View {
                 .padding(.vertical)
             }
             .background(Palette.screen)
-            .navigationTitle("Монгол хэл")
+            .navigationTitle("Words")
         }
     }
 
